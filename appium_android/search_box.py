@@ -172,7 +172,7 @@ class Search(object):
                 e1.click()
             except:
                 pass
-    # 装载文章
+    # 转载文章
     def send_article_question(self):
         self.driver.find_element_by_id("com.aware:id/main_iv_post").click()
         photos=self.driver.find_element_by_id("android:id/content").find_elements_by_class_name("android.widget.ImageView")
