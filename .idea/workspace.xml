@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4bc1c82-63f4-481f-b9bd-b3b399c67887" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/appium_android/search_box.py" beforeDir="false" afterPath="$PROJECT_DIR$/appium_android/search_box.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appium_android/test02.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,15 +22,6 @@
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="like.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aware_demo/like.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -61,23 +53,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="google.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aware_demo/google.py">
+      <file leaf-file-name="homepage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appium_android/homepage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+            <state relative-caret-position="414">
+              <caret line="30" selection-start-line="30" selection-end-line="33" selection-end-column="68" />
+              <folding>
+                <element signature="e#14#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="homepage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/appium_android/homepage.py">
+      <file leaf-file-name="test01.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appium_android/test01.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="614">
-              <caret line="365" column="24" selection-start-line="365" selection-start-column="24" selection-end-line="365" selection-end-column="24" />
+            <state relative-caret-position="253">
+              <caret line="11" column="60" lean-forward="true" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="77" />
               <folding>
-                <element signature="e#14#29#0" expanded="true" />
+                <element signature="e#0#72#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test02.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/appium_android/test02.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="desired_capabilities.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appium_android/desired_capabilities.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -91,20 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common_util.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/appium_android/common_util.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="29" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search_box.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search_box.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/appium_android/search_box.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="180" column="36" lean-forward="true" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
+            <state relative-caret-position="614">
+              <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -139,6 +143,7 @@
     <setting file="file://$PROJECT_DIR$/aware_demo/send_articles.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/appium_android/search_box.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/aware_demo/send_api.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/appium_android/test01.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/aware_demo/like.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/appium_android/desired_capabilities.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/aware_demo/lucky_demo.py" root0="SKIP_INSPECTION" />
@@ -147,12 +152,11 @@
     <setting file="file://$PROJECT_DIR$/appium_android/at_test.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/appium_android/homepage.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/aware_demo/data_config.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/appium_android/test02.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/search.py" />
-        <option value="$PROJECT_DIR$/search_UI.py" />
         <option value="$PROJECT_DIR$/android_7.0_search.py" />
         <option value="$PROJECT_DIR$/venv/send_mail.py" />
         <option value="$PROJECT_DIR$/first_index.py" />
@@ -202,6 +206,8 @@
         <option value="$PROJECT_DIR$/aware_demo/1.txt" />
         <option value="$PROJECT_DIR$/aware_demo/lucky_demo.py" />
         <option value="$PROJECT_DIR$/appium_android/search_box.py" />
+        <option value="$PROJECT_DIR$/appium_android/test01.py" />
+        <option value="$PROJECT_DIR$/appium_android/test02.py" />
       </list>
     </option>
   </component>
@@ -268,7 +274,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lucky_demo">
+  <component name="RunManager" selected="Python.test02">
     <configuration name="draw_touch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AWARE" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -323,24 +329,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="randam_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AWARE" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/aware_demo" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aware_demo/randam_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="search_box" type="PythonConfigurationType" factoryName="Python">
       <module name="AWARE" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -377,7 +365,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="test_google" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test01" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AWARE" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -385,11 +373,29 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/aware_demo" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/appium_android" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aware_demo/test_google.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/appium_android/test01.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="test02" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AWARE" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/appium_android" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/appium_android/test02.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -399,18 +405,18 @@
       <item itemvalue="Python.search_box" />
       <item itemvalue="Python.send_articles" />
       <item itemvalue="Python.name_test" />
-      <item itemvalue="Python.randam_test" />
-      <item itemvalue="Python.test_google" />
       <item itemvalue="Python.draw_touch" />
       <item itemvalue="Python.lucky_demo" />
+      <item itemvalue="Python.test01" />
+      <item itemvalue="Python.test02" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test02" />
+        <item itemvalue="Python.test01" />
         <item itemvalue="Python.lucky_demo" />
         <item itemvalue="Python.name_test" />
         <item itemvalue="Python.draw_touch" />
-        <item itemvalue="Python.randam_test" />
-        <item itemvalue="Python.test_google" />
       </list>
     </recent_temporary>
   </component>
@@ -460,12 +466,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12802951" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12802951" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50052685" side_tool="true" weight="0.5969499" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32897604" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.24183007" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.24100327" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.15359478" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -498,10 +504,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python27/Lib/urllib2.py" />
-    <entry file="file://$PROJECT_DIR$/venv/Lib/distutils/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/main/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -569,13 +571,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/appium_android/hot_wait_content.py" />
     <entry file="file://$PROJECT_DIR$/appium_android/alert_login.py" />
-    <entry file="file://$PROJECT_DIR$/appium_android/desired_capabilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appium_android/draw_touch.py" />
     <entry file="file://$PROJECT_DIR$/appium_android/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -744,23 +739,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appium_android/homepage.py">
+    <entry file="file://$PROJECT_DIR$/appium_android/search_box.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="614">
-          <caret line="365" column="24" selection-start-line="365" selection-start-column="24" selection-end-line="365" selection-end-column="24" />
+          <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appium_android/desired_capabilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appium_android/homepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="30" selection-start-line="30" selection-end-line="33" selection-end-column="68" />
           <folding>
             <element signature="e#14#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appium_android/search_box.py">
+    <entry file="file://$PROJECT_DIR$/appium_android/test01.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="180" column="36" lean-forward="true" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
+        <state relative-caret-position="253">
+          <caret line="11" column="60" lean-forward="true" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="77" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#72#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appium_android/test02.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
         </state>
       </provider>
     </entry>
