@@ -20,7 +20,7 @@ from desired_capabilities import get_desired_capabilities
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
-class RunTest(object):
+class HomePage(object):
     def __init__(self):
         # self.run_test=RunMethod()
         self.com=CommonUtil()
@@ -390,7 +390,7 @@ class RunTest(object):
         self.driver.swipe(x1,y1,x2,y1,t)
         # print (x1, x2, y1)
 if __name__ == '__main__':
-    run=RunTest()
+    run=HomePage()
     # run.test_banner()
     # run.test_Quotation()
     # run.hot_project()
