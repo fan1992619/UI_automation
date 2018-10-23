@@ -1,31 +1,23 @@
 import time
 import sys
-from appium import webdriver
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 sys.path.append("D:\PycharmProjects\AWARE")
-from appium_android.desired_capabilities import get_desired_capabilities
-from appium_android.common_util import CommonUtil
-# from appium_android.homepage import RunTest
+from appium import webdriver
+from appium_android.homepage import HomePage
+# from selenium.common.exceptions import NoSuchElementException
+# from selenium.webdriver.support import expected_conditions
+# from selenium.webdriver.support.wait import WebDriverWait
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 import random
-from aware_demo.send_articles import SendArticles
-class Search(object):
+from appium_android.testmethod import TestMethod
+from appium_android.common_util import CommonUtil
+from appium_android.send_articles import SendArticles
+class Search(TestMethod):
     def __init__(self):
-        # super(Search,self).__init__()
-        self.com = CommonUtil()
-        self.artiles=SendArticles()
-        # self.Home = RunTest()
-        desired_caps = get_desired_capabilities()
-        # 启动aware
-        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-        self.driver.find_elements_by_id("com.aware:id/base_id_tab_text")[3].click()
-        time.sleep(2)
-        self.name_element="com.aware:id/account_name_ll"
-        self.flag=self.is_element("id",self.name_element)
+        super(Search,self).__init__()
+        self.com=CommonUtil()
+        self.get_article=SendArticles()
     def search_test(self):
         home_search_box=self.driver.find_element_by_id("com.aware:id/home_vpsearch_ll").find_element_by_class_name("android.widget.TextView")
         if self.com.is_contain("项目/币种",home_search_box.text):
@@ -81,51 +73,8 @@ class Search(object):
             hot_search_list[1].click()
             time.sleep(1)
             self.driver.quit()
-    def search_back(self):
-        self.driver.find_element_by_id("com.aware:id/search_back_iv").click()
-        time.sleep(1)
-        self.driver.find_element_by_id("com.aware:id/home_vpsearch_ll").click()
-    def clean_text(self,text):
-        # 清空文本框的方法
-        # 123代表光标移动到最末尾
-        self.driver.keyevent(123)
-        for i in range(0, len(text)):
-            self.driver.keyevent(67)
-    def find_ele(self, id):
-        ''' 获取到要删除的文本框内容 '''
-        find_ele = self.driver.find_element_by_id(id)
-        find_ele.click()
-        return find_ele.text
-    # def Delete(self):
-    #     '''删除文本框内容'''
-    #     get_text = self.find_ele(id)
-    #     self.clean_text(get_text)
-   # 判断页面中的元素是否存在
-    def is_element(self, identifyBy, c):
-        try:
-            if identifyBy == "id":
-                # self.driver.implicitly_wait(60)
-                self.driver.find_element_by_id(c)
-            elif identifyBy == "xpath":
-                # self.driver.implicitly_wait(60)
-                self.driver.find_element_by_xpath(c)
-            elif identifyBy == "class":
-                self.driver.find_element_by_class_name(c)
-            elif identifyBy == "link text":
-                self.driver.find_element_by_link_text(c)
-            elif identifyBy == "partial link text":
-                self.driver.find_element_by_partial_link_text(c)
-            elif identifyBy == "name":
-                self.driver.find_element_by_name(c)
-            elif identifyBy == "tag name":
-                self.driver.find_element_by_tag_name(c)
-            elif identifyBy == "css selector":
-                self.driver.find_element_by_css_selector(c)
-            flag = True
-        except (NoSuchElementException):
-            flag = False
-        finally:
-            return flag
+
+
     def follow_tab(self):
         if self.flag:
             self.driver.find_elements_by_id("com.aware:id/base_id_tab_img")[1].click()
@@ -138,57 +87,65 @@ class Search(object):
                     print("关注tab没有关注的项目")
                     self.driver.find_elements_by_id("com.aware:id/base_id_tab_text")[3].click()
             else:
-                pass
+                HomePage.swipeDown(self,1000)
         else:
             self.login_text()
-    def login_text(self):
-        self.driver.find_element_by_id("com.aware:id/login_phone_input_et").send_keys("18782610762")
-        self.driver.find_element_by_id("com.aware:id/login_code_input_et").send_keys("111111")
-        self.driver.find_element_by_id("com.aware:id/login_btn").click()
         # toast_id = ("xpath", "//*[contains(@text='登录成功')]")
         # toast_login_test=WebDriverWait(self.driver,5,0.01).until(EC.presence_of_element_located(toast_id))
         # toast_login_test = WebDriverWait(self.driver, 1, 0.5).until(
         #     expected_conditions.presence_of_element_located(toast_id))
         # print(toast_login_test.text)
-    # 个人页登录
-    def my_homepage(self):
-        self.driver.find_elements_by_id("com.aware:id/base_id_tab_text")[3].click()
-        time.sleep(2)
-        name_element="com.aware:id/account_name_ll"
-        flag=self.is_element("id",name_element)
-        if flag:
-            self.driver.find_element_by_id("com.aware:id/account_name_ll").click()
-            self.driver.find_element_by_id("com.aware:id/login_out_tv").click()
-            self.always_allow()
-            self.login_text()
-        else:
-            self.login_text()
-    def always_allow(self,num=2):
-        # 处理获取手机权限的弹框,该方法暂时不能通用，后期继续调试
-        for i in range(num):
-            loc = ("id","com.aware:id/dialog_double_bottom_id_right")
-            try:
-                e1=WebDriverWait(self.driver,1,0.5).until(expected_conditions.presence_of_element_located(loc))
-                e1.click()
-            except:
-                pass
+    #
+    # def always_allow(self,num=2):
+    #     # 处理获取手机权限的弹框,该方法暂时不能通用，后期继续调试
+    #     for i in range(num):
+    #         loc = ("id","com.aware:id/dialog_double_bottom_id_right")
+    #         try:
+    #             e1=WebDriverWait(self.driver,1,0.5).until(expected_conditions.presence_of_element_located(loc))
+    #             e1.click()
+    #         except:
+    #             pass
     # 转载文章
     def send_article_question(self):
+        TestMethod.is_boxframe(self)
+        self.driver.find_elements_by_id("com.aware:id/base_id_tab_text")[3].click()
+        time.sleep(2)
+        TestMethod.login_text(self)
         self.driver.find_element_by_id("com.aware:id/main_iv_post").click()
-        photos=self.driver.find_element_by_id("android:id/content").find_elements_by_class_name("android.widget.ImageView")
-        print(len(photos))
+        photos=self.driver.find_elements_by_class_name("android.widget.TextView")
         for i in range(len(photos)):
             send_text=photos[i].text
             if self.com.is_contain("转载文章",send_text):
                 photos[i].click()
                 title=self.driver.find_element_by_id("com.aware:id/tv_title_title").text
+                print("转载文章页面的标题是:{0}".format(title),"--->符合预期")
+                #所属项目-->文章分类-->文章链接-->url
+                #随机选择项目类型
+                self.driver.find_element_by_id("com.aware:id/publish_project_name").click()
+                project_list=self.driver.find_elements_by_id("com.aware:id/project_rl")
+                random_project=random.choice(project_list)
+                random_project.click()
+                #随机选择文章类型
+                article_class=self.driver.find_element_by_id("com.aware:id/flowlayout").find_elements_by_class_name("android.widget.RelativeLayout")
+                random_articles_class=random.choice(article_class)
+                random_articles_class.click()
+                #随机选择文章的url
+                url_num = random.randint(2, 20)
+                url=self.get_article.open_url(url_num)
+                # print(url)
+                self.driver.find_element_by_id("com.aware:id/publish_project_link").send_keys(url)
+                time.sleep(2)
+                self.driver.find_element_by_id("com.aware:id/publish_project_title").click()
+                self.driver.find_element_by_id("com.aware:id/iv_title_right").click()
+                # self.driver.quit()
             elif self.com.is_contain("提问",send_text):
                 photos[i].click()
-            else:
-                break
 
+            else:
+                continue
 if __name__ == '__main__':
     sear = Search()
     # sear.search_test()
     # sear.my_homepage()
-    sear.follow_tab()
+    # sear.follow_tab()
+    sear.send_article_question()

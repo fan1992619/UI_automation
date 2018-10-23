@@ -1,4 +1,4 @@
-from appium_android.test01 import TestAction
+from aware_demo.test01 import TestAction
 class TestAction02(TestAction):
     def __init__(self):
         super(TestAction02,self).__init__()

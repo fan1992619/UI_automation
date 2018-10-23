@@ -5,8 +5,8 @@ sys.path.append("D:\PycharmProjects\AWARE")
 import os
 import requests
 import json
-# from selenium import webdriver
 from appium import webdriver
+from appium_android.testmethod import TestMethod
 from appium.webdriver.common.touch_action import TouchAction
 from appium.webdriver import Remote
 import unittest
@@ -20,23 +20,11 @@ from desired_capabilities import get_desired_capabilities
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
-class HomePage(object):
+class HomePage(TestMethod):
     def __init__(self):
-        # self.run_test=RunMethod()
+        super(HomePage,self).__init__()
         self.com=CommonUtil()
-        desired_caps = get_desired_capabilities()
-        #启动aware
-        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
         time.sleep(5)
-        self.home_page=self.driver.find_element_by_xpath("//*[@text='首页']")
-        self.follow=self.driver.find_element_by_xpath("//*[@text='关注']")
-        self.project_map=self.driver.find_element_by_xpath("//*[@text='项目地图']")
-        self.my=self.driver.find_element_by_xpath("//*[@text='我的']")
-    # def driver_one(self):
-    #     desired_caps = get_desired_capabilities()
-    #     # 启动aware
-    #     diver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-    #     return driver
     #banner
     def test_banner(self):
         for i in range(3):
@@ -96,23 +84,6 @@ class HomePage(object):
                 pass
             self.back_button()
         self.driver.quit()
-    #发送get请求
-    def request_main(self):
-        #首页的接口
-        url = 'https://api.at.top/v1/index'
-        header = {
-            'Host': 'api.at.top',
-            'Connection': 'Keep-Alive',
-            'Accept-Encoding': 'gzip',
-            'User-Agent': 'okhttp/3.8.1',
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmF0LnRvcFwvdjFcL2FjY291bnRcL3NpZ25pbiIsImlhdCI6MTUzNTYxMTk3NiwiZXhwIjoxNTY3MTQ3OTc2LCJuYmYiOjE1MzU2MTE5NzYsImp0aSI6InpFcHcyWkVrVUlTcHJxZ3YiLCJzdWIiOiIzMyIsInBydiI6ImM4ZWUxZmM4OWU3NzVlYzRjNzM4NjY3ZTViZTE3YTU5MGI2ZDQwZmMifQ.Ezs1NU0qEOLgNVVfDAXA2BvEo5fAwVSqqyAqLMVLDhE',
-            'deviceid': 'f4:f5:db:15:ec:1b-f4:f5:db:15:ec:1b',
-            'platform': 'android',
-            'userid': '33',
-            'version': '2.0'
-        }
-        res=requests.get(url=url,headers=header).json()
-        return res
     #首页深度回答
     def homepage_deep_answer(self):
         answer_one = self.driver.find_element_by_id("com.aware:id/question_rl")
@@ -294,9 +265,15 @@ class HomePage(object):
             print("最热文章的数量为:{0}个".format(len(article_num))+"--->符合预期")
         else:
             print("最热文章数量--->不符和预期")
-        for i in range(3):
+        for i in range(4):
             self.swipeUp(1000)
-        best_hot=self.driver.find_element_by_id("com.aware:id/home_hotarticle_ll")
+            # 获取当前页面的所有元素
+            source = self.driver.page_source
+            best_hot=self.driver.find_element_by_id("com.aware:id/home_hotarticle_ll")
+            if self.com.is_contain(best_hot,source):
+                pass
+            else:
+                break
         best_title=best_hot.find_element_by_class_name("android.widget.TextView").text
         print(best_title)
         #最热文章标题list
@@ -345,50 +322,6 @@ class HomePage(object):
         time.sleep(1)
         driver.find_element_by_xpath("//*[@text='一种点对点的电子现金系统']").click()
         time.sleep(1)
-    #左上角返回按钮
-    def back_button(self):
-        # driver.find_element_by_id("com.aware:id/iv_title_left").click()
-        # driver.tap([(48, 63), (114, 129)],900)
-        #物理键返回
-        self.driver.keyevent(4)
-        time.sleep(1)
-        # self.driver.quit()
-    #获取屏幕尺寸大小
-    def getSize(self):
-        x=self.driver.get_window_size()['width']
-        y=self.driver.get_window_size()['height']
-        return x,y
-    #向上滑动
-    def swipeUp(self,t):
-        l=self.getSize()
-        x1=int(l[0]*0.5)
-        y1=int(l[1]*0.75)
-        y2=int(l[1]*0.2)
-        self.driver.swipe(x1,y1,x1,y2,t)
-        # print (x1,y1,y2)
-    #向下滑动
-    def swipeDown(self,t):
-        l=self.getSize()
-        x1=int(l[0]*0.5)
-        y1=int(l[1]*0.25)
-        y2=int(l[1]*0.75)
-        self.driver.swipe(x1,y1,x1,y2,t)
-    #向左滑动：从右向左滑动
-    def swipeLeft(self,t):
-        l=self.getSize()
-        x1=int(l[0]*0.75)
-        x2=int(l[0]*0.05)
-        y1=int(l[1]*0.85)
-        self.driver.swipe(x1,y1,x2,y1,t)
-        # print (x1,x2,y1)
-    #向右滑动:从左向右滑动
-    def swipeRight(self,t):
-        l=self.getSize()
-        x1=int(l[0]*0.05)
-        x2=int(l[0]*0.75)
-        y1=int(l[1]*0.85)
-        self.driver.swipe(x1,y1,x2,y1,t)
-        # print (x1, x2, y1)
 if __name__ == '__main__':
     run=HomePage()
     # run.test_banner()
