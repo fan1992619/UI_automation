@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+from openpyxl import load_workbook,Workbook
 '''
 ID:1-->500at
 ID:2-->THANKS 
@@ -13,9 +14,9 @@ def send_get(url,header,data=None):
     res=requests.post(url=url,headers=header,data=data).json()
     return res
 if __name__ == '__main__':
-    url='http://api.dev.initialvc.com/v1/roulette/rAware'
+    url='http://api.test.initialvc.com/v1/roulette/rAware'
     header_187={
-        'Host': 'api.dev.initialvc.com',
+        'Host': 'api.test.initialvc.com',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
         'User-Agent': 'okhttp/3.8.1',
@@ -27,7 +28,7 @@ if __name__ == '__main__':
         'version': '2.2.1'
     }
     header_182={
-        'Host': 'api.dev.initialvc.com',
+        'Host': 'api.test.initialvc.com',
         'version': '2.2.1',
         'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkudGVzdC5pbml0aWFsdmMuY29tXC92MVwvYWNjb3VudFwvc2lnbmluIiwiaWF0IjoxNTM4MDMwNTIxLCJleHAiOjE1Njk1NjY1MjEsIm5iZiI6MTUzODAzMDUyMSwianRpIjoiVVFpaE1PMXZOTlpKYWVXOCIsInN1YiI6IjMxIiwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.dm6fpDiC4ugDuBwOyCvaD1SLCyMhvsYZZ2lGmHse7jU',
         'userid': '31',
@@ -40,26 +41,46 @@ if __name__ == '__main__':
         'Connection': 'keep-alive',
         'Getuiclientid': '654e8dae6f761ebe0ae73c3d74615deb'
     }
-    for i in range(2):
-        file_handle = open('D:\\PycharmProjects\\AWARE\\aware_demo\\1.txt', mode='w')
-        # file_handle.write("")
+    for i in range(90):
+        wb = load_workbook('../aware_demo/lucky.xlsx')
+        ws = wb.active
+        ws.title = "抽奖记录"
         res=send_get(url,header_187)
+        # print(res)
         lucky_id=res['data']['jpId']
         lucky_id_num=int(lucky_id)
-        if lucky_id_num==1:
-            print("第%d次奖励id为{0}--->500AT".format(lucky_id_num) % i,res)
-        elif lucky_id_num==2:
-            print("第%d次奖励id为{0}--->thanks".format(lucky_id_num) % i, res)
-        elif lucky_id_num==3:
-            print("第%d次奖励id为{0}--->马克杯".format(lucky_id_num) % i, res)
-        elif lucky_id_num==4:
-            print("第%d次奖励为{0}--->50AT".format(lucky_id_num) % i, res)
-        elif lucky_id_num==5:
-            print("第%d次奖励id为{0}--->1000AT".format(lucky_id_num) % i, res)
-        elif lucky_id_num ==6:
-            print("第%d次奖励为id{0}--->ipad".format(lucky_id_num) % i, res)
-            break
-        else:
-            print("抽奖次数用完必",res)
-        time.sleep(0.05)
-        file_handle.close()
+        # content_lucky=("第%d次奖励id为{0}--->500AT".format(lucky_id_num) % i)
+        try:
+            if lucky_id_num==20:
+                content_lucky = ("第%d次奖励id为{0}--->以太坊卡".format(lucky_id_num) % i)
+                ws['A{0}'.format(i + 1)] = content_lucky
+                print("第%d次奖励id为{0}--->以太坊卡".format(lucky_id_num) % i,res)
+            elif lucky_id_num==21:
+                content_lucky = ("第%d次奖励id为{0}--->thanks".format(lucky_id_num) % i)
+                ws['A{0}'.format(i + 1)] = content_lucky
+                print("第%d次奖励id为{0}--->thanks".format(lucky_id_num) % i, res)
+            elif lucky_id_num==22:
+                content_lucky = ("第%d次奖励id为{0}--->P2 plus钱包".format(lucky_id_num) % i)
+                ws['A{0}'.format(i + 1)] = content_lucky
+                print("第%d次奖励id为{0}--->P2 plus钱包".format(lucky_id_num) % i, res)
+            elif lucky_id_num==23:
+                content_lucky = ("第%d次奖励id为{0}--->库神比特币卡片".format(lucky_id_num) % i)
+                ws['A{0}'.format(i + 1)] = content_lucky
+                print("第%d次奖励为{0}--->库神比特币卡片".format(lucky_id_num) % i, res)
+            elif lucky_id_num==24:
+                content_lucky = ("第%d次奖励id为{0}--->白皮书".format(lucky_id_num) % i)
+                ws['A{0}'.format(i + 1)] = content_lucky
+                print("第%d次奖励id为{0}--->白皮书".format(lucky_id_num) % i, res)
+            elif lucky_id_num ==25:
+                content_lucky = ("第%d次奖励id为{0}--->库神钱包优惠码".format(lucky_id_num) % i)
+                ws['A{0}'.format(i + 1)] = content_lucky
+                print("第%d次奖励为id{0}--->库神钱包优惠码".format(lucky_id_num) % i, res)
+            else:
+                content_lucky = ("第%d次奖励id为{0}--->抽奖次数用完必".format(lucky_id_num) % i)
+                ws['A{0}'.format(i + 1)] = content_lucky
+                print("第%d次抽奖次数用完必" % i,res)
+        except:
+            pass
+        finally:
+            wb.save('../aware_demo/lucky.xlsx')
+        # time.sleep(0.5)

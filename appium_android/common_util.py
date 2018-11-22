@@ -1,4 +1,4 @@
-#coding=utf-8
+import json
 import unicodedata
 class CommonUtil:
 #判断一个字符串是否包含另一个字符串
@@ -19,8 +19,13 @@ class CommonUtil:
         return flag
 if __name__ == '__main__':
     com_util=CommonUtil()
-    a="我们"
-    print(type(a))
-    b="我们"
-    print(com_util.is_contain(a,b))
+    str_one={'code':0}
+    str_one=json.dumps(str_one)
+    print(type(str_one))
+    print(str_one)
+    str_two={"code": 0, "data": {"ios_public_hide": 0, "invite_reward_intro": "\u9080\u8bf7\u597d\u53cb\u4e00\u8d77\u53ef\u83b7\u597d\u53cb20%\u6536\u76ca"}}
+    str_two=json.dumps(str_two)
+    print(type(str_two))
+    print(str_two)
+    print(com_util.is_contain(str_one,str_two))
 

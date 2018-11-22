@@ -2,16 +2,19 @@
 #18210542401 bearer     Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmF0LnRvcFwvdjFcL2FjY291bnRcL3NpZ25pbiIsImlhdCI6MTUzMzg4NTIyNCwiZXhwIjoxNTY1NDIxMjI0LCJuYmYiOjE1MzM4ODUyMjQsImp0aSI6Im80ZmFKVnhlMUxXSmlmdksiLCJzdWIiOjMxLCJwcnYiOiJjOGVlMWZjODllNzc1ZWM0YzczODY2N2U1YmUxN2E1OTBiNmQ0MGZjIn0.UCbB_ilaw1xu92aB4oQ5k_dJXT6tj-xHVGtO5-NiHTM
 #18782610762 bearer     Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmF0LnRvcFwvdjFcL2FjY291bnRcL3NpZ25pbiIsImlhdCI6MTUzMzg4NDY0NywiZXhwIjoxNTY1NDIwNjQ3LCJuYmYiOjE1MzM4ODQ2NDcsImp0aSI6ImlGTlJkTTRSVk90S3ZhWTgiLCJzdWIiOjMzLCJwcnYiOiJjOGVlMWZjODllNzc1ZWM0YzczODY2N2U1YmUxN2E1OTBiNmQ0MGZjIn0.uMkAI8VR6lZOCr27znRYLfkZRazvpvxDHjc8wBi1xPw
 from lxml import html
-import xlrd
+# import xlsxwriter
 # import urllib.request
+from openpyxl import load_workbook,Workbook
 import requests
+import urllib.request
 import random
-from openpyxl import Workbook, load_workbook
-# from openpyxl.drawing.image import Image
-# from requests.packages.urllib3.exceptions import InsecureRequestWarning
-# requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-import appium_android.data_config
+import xlrd
+from openpyxl.drawing.image import Image
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+from appium_android import data_config
 import json
+import time
 str_182='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmF0LnRvcFwvdjFcL2FjY291bnRcL3NpZ25pbiIsImlhdCI6MTUzMzg4NTIyNCwiZXhwIjoxNTY1NDIxMjI0LCJuYmYiOjE1MzM4ODUyMjQsImp0aSI6Im80ZmFKVnhlMUxXSmlmdksiLCJzdWIiOjMxLCJwcnYiOiJjOGVlMWZjODllNzc1ZWM0YzczODY2N2U1YmUxN2E1OTBiNmQ0MGZjIn0.UCbB_ilaw1xu92aB4oQ5k_dJXT6tj-xHVGtO5-NiHTM'
 str_187='Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmF0LnRvcFwvdjFcL2FjY291bnRcL3NpZ25pbiIsImlhdCI6MTUzMzg4NDY0NywiZXhwIjoxNTY1NDIwNjQ3LCJuYmYiOjE1MzM4ODQ2NDcsImp0aSI6ImlGTlJkTTRSVk90S3ZhWTgiLCJzdWIiOjMzLCJwcnYiOiJjOGVlMWZjODllNzc1ZWM0YzczODY2N2U1YmUxN2E1OTBiNmQ0MGZjIn0.uMkAI8VR6lZOCr27znRYLfkZRazvpvxDHjc8wBi1xPw'
 class SendArticles():
@@ -102,45 +105,62 @@ class SendArticles():
         data = xlrd.open_workbook('../appium_android/title.xlsx')
         tables = data.sheets()[0]
         tables=tables.nrows
-        tables=random.choice(tables)
-        print(tables)
+        tables=random.randint(0,tables)
+        return tables
+    #插入图片暂时不能允许
+    '''
     def spider_images(self):
         self.spider_article()
         data = load_workbook('../appium_android/title.xlsx')
         ws = data.active
-        # data.sheetnames('抓取标题
+        # data.sheetnames('抓取标题'）
         # tables_num = data.sheets()[0].nrows
         for i in range(19):
             if i<1:
                 continue
             else:
                 img_url=self.open_img_url(i)
+                get_img=self.spider_img()
+                print(get_img)
                 # print(img_url,)
-                f =open('../appium_android/title.xlsx',"wb")# 打开文件
-                req=urllib.request.urlopen(img_url)
+                # f =open('../appium_android/title.xlsx',"wb")# 打开文件
+                req=urllib.request.urlopen(get_img)
                 buf=req.red()# 读出文件
                 f.write(buf)# 写入文件
-                img=Image('../aware_demo/{0}.jpg'.format(i))
+                img=Image('../appium_android/{0}.jpg'.format(i))
                 # f.writelines(ws['D{0}'.format(i + 2)])
                 # img=Image('../appium_android/{0}.jpg'.format(i))
                 ws.add_image(img,'E{0}'.format(i+2))
                 i+=1
             data.save('../appium_android/title.xlsx')
-        # # 根据图片链接列表，把图片保存到本地
-        # j = 0
-        # for url in listurl:
-        #     f = open(str(j) + '.jpg', "wb")  # 打开文件
-        #     req = urllib.request.urlopen(url)
-        #     buf = req.read()  # 读出文件
-        #     f.write(buf)  # 写入文件
-        #     j = j + 1
-        # img = Image('../appium_android/0.jpg')
-        # img1=Image('../appium_android/1.jpg')
-        # ws.add_image(img,'A3')
-        # ws.add_image(img1,'A4')
-        # wb_img.save("../appium_android/pict.xlsx")
+    '''
+    #测试插入图片
+    def img_test():
+        listurl = ['https://contestimg.wish.com/api/webimage/59647c7e7baa287c180fa0e0-3-original.jpg',
+                   'https://contestimg.wish.com/api/webimage/59647c7e7baa287c180fa0e0-original.jpg', ]
+
+        # 根据图片链接列表，把图片保存到本地
+        i = 0
+        for url in listurl:
+            f = open(str(i) + '.jpg', "wb")  # 打开文件
+            req = urllib.request.urlopen(url)
+            buf = req.read()  # 读出文件
+            f.write(buf)  # 写入文件
+            i = i + 1
+        # 将图片一次导入到表格的1，2...行
+        data = load_workbook('../appium_android/pict.xlsx')
+        ws = data.active
+        img = Image('../appium_android/0.jpg')
+        ws.add_image(img, 'E2')
+        data.save('../appium_android/title.xlsx')
     #发送文章
     def send_atricl(self):
+        #随机获取项目id
+        articles=[22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,1503]
+        random_articles_num=random.choice(articles)
+        #随机获取主题id
+        subjects = [1, 2, 3, 4, 5, 6]
+        random_subject=random.choice(subjects)
         self.spider_article()
         data = xlrd.open_workbook('../appium_android/title.xlsx')
         tables = data.sheets()[0].nrows
@@ -151,6 +171,10 @@ class SendArticles():
             link=self.open_url(i)
             title=self.open_title(i)
             url='https://api.at.top/v1/projects/22/articles'
+            #发布文章到项目
+            url_test_project='http://api.test.initialvc.com/v1/projects/{0}/articles'.format(random_articles_num)
+            #发布文章到主题
+            url_test_subject='http://api.test.initialvc.com/v1/subjects/{0}/articles'.format(random_subject)
             data={
                 'type': '1',
                 'link': '{0}'.format(link),
@@ -172,29 +196,152 @@ class SendArticles():
                 'userid': '33',
                 'version': '2.2.0'
             }
-            # print('第%d次' % i, res)
-            header={
+            header_test={
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': '239',
+                'Content-Length': '325',
+                'Host': 'api.test.initialvc.com',
+                'Accept-Encoding': 'gzip',
+                'User-Agent': 'okhttp/3.8.1',
+                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkudGVzdC5pbml0aWFsdmMuY29tXC92MVwvYWNjb3VudFwvc2lnbmluIiwiaWF0IjoxNTQwNzk2OTk5LCJleHAiOjE1NzIzMzI5OTksIm5iZiI6MTU0MDc5Njk5OSwianRpIjoibGI4b241TTBCTno4V0JCNiIsInN1YiI6IjMzIiwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.BHLtxjFJm-FlZePx9nZo6KMzQmURkwJfsFByBOsqDSY',
+                'deviceid': 'ac:c1:ee:c0:33:34-ac:c1:ee:c0:33:34',
+                'getuiclientid': '0419d93bf4806aa84c2187927d8f66bc',
+                'platform': 'android',
+                'userid': '33',
+                'version': '1.2.0',
+                'Connection': 'keep-alive'
+            }
+            #发布文章到主题
+            res=requests.post(url=url_test_subject,data=data,headers=header_test,verify=False).json()
+            #发布文章到项目
+            # res = requests.post(url=url_test_project, data=data, headers=header_test, verify=False).json()
+            print ('第%d次' % i,res)
+    #发布提问
+    def send_question(self):
+        self.spider_article()
+        data = xlrd.open_workbook('../appium_android/title.xlsx')
+        tables = data.sheets()[0].nrows
+        #随机获取项目id
+        project_id=[22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,1503]
+        random_project_num=random.choice(project_id)
+        #随机获取主题id
+        subjects = [1, 2, 3, 4, 5, 6]
+        random_subject=random.choice(subjects)
+        print(tables)
+        for i in range(tables):
+            if i < 1:
+                continue
+            content = self.open_content(i)
+            title = self.open_title(i)+"?"
+            url_question_project = 'http://api.test.initialvc.com/v1/question'
+            url_question_subject = 'http://api.test.initialvc.com/v1/question/subject'
+            data_subject = {
+                'subject_id':random_subject,
+                'is_anonymous':1,
+                'description': '{0}'.format(content),
+                'title': '{0}'.format(title)
+            }
+            data_project={
+                'project_id': random_project_num,
+                'is_anonymous': 1,
+                'description': '{0}'.format(content),
+                'title': '{0}'.format(title)
+            }
+            header_at = {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': '764',
+                'Host': 'api.at.top',
                 'Connection': 'Keep-Alive',
                 'Accept-Encoding': 'gzip',
                 'User-Agent': 'okhttp/3.8.1',
-                'Host': 'api.at.top',
-                'Authorization': str_182,
+                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkudGVzdC5pbml0aWFsdmMuY29tXC92MVwvYWNjb3VudFwvc2lnbmluIiwiaWF0IjoxNTM3NTMxMDk3LCJleHAiOjE1NjkwNjcwOTcsIm5iZiI6MTUzNzUzMTA5NywianRpIjoiSk9VaUN2QVZBMVNGa05iZyIsInN1YiI6IjMzIiwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.FExRUmpERoEDDUtFa666lxHjQhbBeD4TQKtH_sa6Jrw',
                 'deviceid': 'ac:c1:ee:c0:33:34-ac:c1:ee:c0:33:34',
+                'getuiclientid': '330ccf5988efd42e629f88e533488d4e',
                 'platform': 'android',
-                'userid': '',
-                'version': '1.2.0'
+                'userid': '33',
+                'version': '2.2.0'
             }
-            res=requests.post(url=url,data=data,headers=header,verify=False).json()
-            print ('第%d次' % i,res)
+            header_test={
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': '325',
+                'Host': 'api.test.initialvc.com',
+                'Accept-Encoding': 'gzip',
+                'User-Agent': 'okhttp/3.8.1',
+                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkudGVzdC5pbml0aWFsdmMuY29tXC92MVwvYWNjb3VudFwvc2lnbmluIiwiaWF0IjoxNTQwNzk2OTk5LCJleHAiOjE1NzIzMzI5OTksIm5iZiI6MTU0MDc5Njk5OSwianRpIjoibGI4b241TTBCTno4V0JCNiIsInN1YiI6IjMzIiwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.BHLtxjFJm-FlZePx9nZo6KMzQmURkwJfsFByBOsqDSY',
+                'deviceid': 'ac:c1:ee:c0:33:34-ac:c1:ee:c0:33:34',
+                'getuiclientid': '0419d93bf4806aa84c2187927d8f66bc',
+                'platform': 'android',
+                'userid': '33',
+                'version': '1.2.0',
+                'Connection': 'keep-alive'
+            }
+            # #提问到主题
+            res = requests.post(url=url_question_subject, data=data_subject, headers=header_test, verify=False).json()
+            #提问到项目
+            # res = requests.post(url=url_question_project, data=data_project, headers=header_test, verify=False).json()
+            print('第%d次' % i, res)
+    #api发布评论
+    def api_commit_deep(self):
+        for i in range(7):
+            num = random.randint(1, 15)
+            comment_content=self.open_content(num)
+            header_at = {
+                'Host': 'api.at.top',
+                'Connection': 'Keep-Alive',
+                'Accept-Encoding': 'gzip',
+                'User-Agent': 'okhttp/3.8.1',
+                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmF0LnRvcFwvdjFcL2FjY291bnRcL3NpZ25pbiIsImlhdCI6MTU0MjcxMDM2MywiZXhwIjoxNTc0MjQ2MzYzLCJuYmYiOjE1NDI3MTAzNjMsImp0aSI6Ijk4ZUtCb2gzaEV1SUE1ckgiLCJzdWIiOiIzMSIsInBydiI6ImM4ZWUxZmM4OWU3NzVlYzRjNzM4NjY3ZTViZTE3YTU5MGI2ZDQwZmMifQ.Ey2Ot4nRgH_fV8Q7D42aKoXH2NzzPYja6bedpBqaXI4',
+                'deviceid': 'ac:c1:ee:c0:33:34-ac:c1:ee:c0:33:34',
+                'getuiclientid': '5b9a0d6f110d2b136f9ca135d93fad06',
+                'platform': 'android',
+                'userid': '33',
+                'version': '2.1.0'
+            }
+            #获取评论的内容
+            comment_data={
+                'content':comment_content
+            }
+            deep_id=[45717909825137196,42810485585750572]
+            deep_id_num=random.choice(deep_id)
+            time.sleep(5)
+            url_comment='https://api.at.top/v1/comment/answer/45717909825137196'
+            res=requests.post(url=url_comment, headers=header_at, data=comment_data).json()
+            # print(res)
+            # send_comment=requests.post(url=url_comment,headers=header_at,data=comment_data).json()
+            if res['code']==-204 or res['code']==-2:
+                url_comment = 'https://api.at.top/v1/comment/answer/42810485585750572'
+                res=requests.post(url=url_comment, headers=header_at, data=comment_data).json()
+                print("res",res)
+            else:
+                print("res", res)
+    def send_get(self):
+        url='https://api.at.top/v1/question/list?page_size=15&sub_type=2&subject_id=6&page=1&type=10&timestamp=1542195063&signature=b7eeb54d81bd81700c0af6accc5418answer_id_list'
+        header_at = {
+            'Host': 'api.at.top',
+            'version': '3.1.0',
+            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmF0LnRvcFwvdjFcL2FjY291bnRcL3NpZ25pbiIsImlhdCI6MTU0MjY5Mzc5OCwiZXhwIjoxNTc0MjI5Nzk4LCJuYmYiOjE1NDI2OTM3OTgsImp0aSI6InhDc3V2RnRlR3kyU0QxVTYiLCJzdWIiOiIzMyIsInBydiI6ImM4ZWUxZmM4OWU3NzVlYzRjNzM4NjY3ZTViZTE3YTU5MGI2ZDQwZmMifQ.aFpfZlQgMKDrTCqF3tvf6ziL52xoM-TvUKJXo_6QRsE',
+            'userid': '33',
+            'Accept-Encoding': 'gzip;q=1.0, compress;q=0.5',
+            'Accept-Language': 'zh-Hans-CN;q=1.0, en-CN;q=0.9',
+            'platform': 'iOS',
+            'Accept': '*/*',
+            'deviceid': 'd05455f5bd20437199c778aa46b7618e',
+            'User-Agent': 'AWARE-iOS/3.1.0 (top.at.aware; build:003; iOS 11.4.0) Alamofire/4.7.2',
+            'Connection': 'keep-alive',
+            'Getuiclientid': '654e8dae6f761ebe0ae73c3d74615deb'
+        }
+        res=requests.get(url=url,headers=header_at).json()
+        print(res['data']['list'][6]['id'])
 if __name__ == '__main__':
     send = SendArticles()
     # send.open_url(3)
     # send.open_title(3)
-    send.spider_article()
+    # send.spider_article()
     # send.spider_images()
     # print(send.articles_url())
     # print(send.open_img_url(3))
     # print(send.open_content(3))
     # send.spider_img()
+    # send.send_atricl()
+    # send.send_question()
+    send.api_commit_deep()
+    # send.send_get()
